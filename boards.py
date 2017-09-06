@@ -1,6 +1,6 @@
 import random
 
-from constants import *
+from constants import EMPTY_SPACE, MONSTERS_TO_THEIR_INITIAL_NUM, ITEMS_TO_THEIR_INITIAL_NUM
 
 
 def make_board(file_name):
