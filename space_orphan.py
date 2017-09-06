@@ -9,36 +9,9 @@ import os
 import inventory
 import hot_game
 import printing
+import boards
 
 from constants import *
-
-
-def make_board(file_name):
-    board = []
-    with open(file_name) as file:
-        for line in file:
-            line = line.strip()
-            sublist = [item for item in line]
-            board.append(sublist)
-    return board
-
-
-def find_empty_spaces(board):
-    empty_spaces = []
-    for i, sublist in enumerate(board):
-        for n, char in enumerate(sublist):
-            if board[i][n] == EMPTY_SPACE:
-                empty_spaces.append((i, n))
-    return empty_spaces
-
-
-def put_on_board(board, what):
-    empty_spaces = find_empty_spaces(board)
-    for item in what:
-        for i in range(what[item]):
-            row, col = random.choice(empty_spaces)
-            board[row][col] = item
-            empty_spaces.remove((row, col))
 
 
 def print_board(board, player_row, player_col):
@@ -130,8 +103,8 @@ def play_level(board, player_row, player_col, health_points, experience_points, 
 
             if board[player_row][player_col] in ITEMS:
                 item = board[player_row][player_col]
-                items.add_to_inventory(inventory, item)
-                items.display_inventory(inventory)
+                inventory.add_to_inventory(inventory, item)
+                inventory.display_inventory(inventory)
                 board[player_row][player_col] = EMPTY_SPACE
 
             elif board[player_row][player_col] in MONSTERS:
@@ -147,33 +120,22 @@ def play_level(board, player_row, player_col, health_points, experience_points, 
 
         elif key == ' ':
             display_inventory(inventory)
+    return health_points, experience_points, inventory
 
 
-def main():
-    print('\033[1;37;49m')
-    printing.print_screen(printing.introduction_screen)
-    printing.print_screen(printing.character_creation_screen)
-    printing.print_screen(printing.how_to_play_screen)
-
-    board = make_board('board_level_1.txt')
-    put_on_board(board, MONSTERS_TO_THEIR_INITIAL_NUM)
-    put_on_board(board, ITEMS_TO_THEIR_INITIAL_NUM)
-
+def initialise_player():
     player_row = 1
     player_col = 1
-
     health_points = INITIAL_HEALTH_POINTS
     experience_points = INITIAL_EXPERIENCE_POINTS
     inventory = {}
+    return player_row, player_col, health_points, experience_points, inventory
 
+
+def main():
+    printing.print_starting_screens()
+    board = boards.initialise_board('board_level_1.txt')
+    player_row, player_col, health_points, experience_points, inventory = initialise_player()
     play_level(board, player_row, player_col, health_points, experience_points, inventory)
-
-    player_row = 1
-    player_col = 1
-
-    board = make_board('board_level_2.txt')
-    put_on_board(board, MONSTERS_TO_THEIR_INITIAL_NUM)
-    put_on_board(board, ITEMS_TO_THEIR_INITIAL_NUM)
-
 
 main()
