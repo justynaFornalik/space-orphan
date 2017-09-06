@@ -14,28 +14,6 @@ import boards
 from constants import *
 
 
-def print_board(board, player_row, player_col):
-    os.system('clear')
-    for i, sublist in enumerate(board):
-        for n, char in enumerate(sublist):
-            if player_row == i and player_col == n:
-                print('\033[1;37;49m' + PLAYER, end='')
-            else:
-                if char == WALL:
-                    print('\033[1;34;49m' + char, end='')
-                elif char == LAVA:
-                    print('\033[1;31;49m' + char, end='')
-                elif char == TREE:
-                    print('\033[1;32;49m' + char, end='')
-                elif char in MONSTERS:
-                    print('\033[1;33;49m' + char, end='')
-                elif char in ITEMS:
-                    print('\033[1;36;49m' + char, end='')
-                else:
-                    print('\033[1;35;49m' + char, end='')
-        print('\033[1;37;49m')
-
-
 def is_obstacle(board, row, col):
     if board[row][col] in OBSTACLES:
         return True
@@ -95,11 +73,11 @@ def fight_with_boss(health_points, experience_points):
 
 def play_level(board, player_row, player_col, health_points, experience_points, inventory):
     while health_points > 0:
-        print_board(board, player_row, player_col)
+        printing.print_board(board, player_row, player_col)
         key = getch()
         if key in MOVE_KEYS:
             player_row, player_col = move_player(board, player_row, player_col, key)
-            print_board(board, player_row, player_col)
+            printing.print_board(board, player_row, player_col)
 
             if board[player_row][player_col] in ITEMS:
                 item = board[player_row][player_col]
