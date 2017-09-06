@@ -1,14 +1,6 @@
 import time
 
-from constants import *
-
-
-def add_to_inventory(inventory, item):
-    if item in inventory.keys():
-        inventory[item] = 1 + inventory[item]
-    else:
-        inventory[item] = 1
-    return inventory
+from constants import ITEMS
 
 
 def display_inventory(inventory):
@@ -28,4 +20,13 @@ def display_inventory(inventory):
     else:
         print('Empty inventory')
     input("Press enter to continue: ")
-    
+
+
+def add_to_inventory(inventory, item):
+    if item in inventory.keys():
+        inventory[item] = 1 + inventory[item]
+    else:
+        inventory[item] = 1
+    print(ITEMS[item][0].capitalize(), 'was added to your inventory.')
+    display_inventory(inventory)
+    return inventory
