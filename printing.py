@@ -22,7 +22,7 @@ def print_board(board, player_row, player_col):
                 if char == WALL:
                     print('\033[1;34;49m' + char, end='')
                 elif char == LAVA:
-                    print('\033[1;31;49m' + char, end='')
+                    print('\033[1;31;41m' + char, end='')
                 elif char == TREE:
                     print('\033[1;32;49m' + char, end='')
                 elif char in MONSTERS:
