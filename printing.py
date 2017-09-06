@@ -2,14 +2,17 @@ import sys
 import os
 
 
-from constants import *
+from constants import PLAYER, WALL, LAVA, TREE, MONSTERS, ITEMS
 
 
 introduction_screen = 'intro screen'
 character_creation_screen = 'character_creation_screen'
 how_to_play_screen = 'how_to_play_screen'
+
 lose_screen = 'lose screen'
 win_screen = 'win_screen'
+hall_of_fame_screen = 'hall_of_fame_screen'
+info_about_authors_screen = 'info about authors'
 
 
 def print_board(board, player_row, player_col):
@@ -47,18 +50,6 @@ def print_starting_screens():
     print_screen(how_to_play_screen)
 
 
-def highscores():
-    pass
-
-
-def print_hall_of_fame_screen():
-    os.system('clear')
-    print('hall_of_fame_screen')
-
-
-def print_info_about_authors():
-    os.system('clear')
-    print('info about authors')
-    input("Press enter to end game: ")
-    os.system('clear')
-    sys.exit()
+def print_ending_screens():
+    print_screen(hall_of_fame_screen)
+    print_screen(info_about_authors_screen)
