@@ -6,10 +6,12 @@ import termios
 import time
 import os
 
-import inventory
-import hot_game
+
 import printing
 import boards
+import inventory
+import fight
+
 
 from constants import *
 
@@ -42,35 +44,6 @@ def move_player(board, player_row, player_col, key):
     return player_row, player_col
 
 
-def fight_monster(monster, health_points, experience_points):
-    print('You encounter a ' + MONSTERS[monster][0] + '!')
-    draw = random.randint(1, 2)
-    if draw == 1:
-        health_points -= MONSTERS[monster][1]
-        print('The ' + MONSTERS[monster][0] + ' hits you. You lose ' + str(MONSTERS[monster][1]) + ' health points.')
-    else:
-        experience_points -= MONSTERS[monster][1]
-        print('You hit the ' + MONSTERS[monster][0] + '. You kill it and gain ' + str(MONSTERS[monster][1]) + ' experience points.')
-    input('Press enter to continue: ')
-
-    return health_points, experience_points
-
-
-def fight_with_boss(health_points, experience_points):
-    if experience_points > EXPERIENCE_REQUIRED_TO_FIGHT_BOSS:
-        os.system('clear')
-        result = hot_game.game()
-        if result:
-            printing.print_screen(printing.win_screen)
-            printing.print_hall_of_fame_screen()
-        else:
-            printing.print_screen(printing.lose_screen)
-        printing.print_info_about_authors()
-    else:
-        print("You don't have enough experience. Come back when you are worthy!")
-        time.sleep(3)
-
-
 def play_level(board, player_row, player_col, health_points, experience_points, inventory):
     while health_points > 0:
         printing.print_board(board, player_row, player_col)
@@ -87,14 +60,14 @@ def play_level(board, player_row, player_col, health_points, experience_points, 
 
             elif board[player_row][player_col] in MONSTERS:
                 monster = board[player_row][player_col]
-                health_points, experience_points = fight_monster(monster, health_points, experience_points)
+                health_points, experience_points = fight.fight_monster(monster, health_points, experience_points)
                 if health_points <= 0:
                     printing.print_screen(printing.lose_screen)
                     printing.print_info_about_authors()
                 board[player_row][player_col] = EMPTY_SPACE
 
             elif board[player_row][player_col] == BOSS:
-                result = fight_with_boss(health_points, experience_points)
+                result = fight.fight_with_boss(health_points, experience_points)
 
         elif key == ' ':
             display_inventory(inventory)
