@@ -2,7 +2,7 @@ import sys
 import tty
 import termios
 
-from constants import *
+from constants import OBSTACLES, MOVE_KEYS
 
 
 def is_obstacle(board, row, col):
