@@ -30,9 +30,9 @@ MONSTERS = {SPACE_SLOTH: ['space sloth', 2],
 MONSTERS_TO_THEIR_INITIAL_NUM = {SPACE_SLOTH: 5, SPACE_SKUNK: 5, SPACE_RACOON: 5, SPACE_GIRAFFE: 5}
 
 
-SPACE_WATER = 'W'
-SPACE_BANANA = 'B'
-SPACE_PIE = 'P'
+SPACE_WATER = '%'
+SPACE_BANANA = '('
+SPACE_PIE = '*'
 URANIUM = 'U'
 ITEMS = {SPACE_WATER: ['space water', 'food', 1],
          SPACE_BANANA: ['space banana', 'food', 1],
