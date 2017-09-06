@@ -9,11 +9,20 @@ import os
 
 import printing
 import boards
-import inventory
+import inv
 import fight
 
 
 from constants import *
+
+
+def initialise_player():
+    player_row = 1
+    player_col = 1
+    health_points = INITIAL_HEALTH_POINTS
+    experience_points = INITIAL_EXPERIENCE_POINTS
+    inventory = {}
+    return player_row, player_col, health_points, experience_points, inventory
 
 
 def is_obstacle(board, row, col):
@@ -54,8 +63,8 @@ def play_level(board, player_row, player_col, health_points, experience_points, 
 
             if board[player_row][player_col] in ITEMS:
                 item = board[player_row][player_col]
-                inventory.add_to_inventory(inventory, item)
-                inventory.display_inventory(inventory)
+                inv.add_to_inventory(inventory, item)
+                inv.display_inventory(inventory)
                 board[player_row][player_col] = EMPTY_SPACE
 
             elif board[player_row][player_col] in MONSTERS:
@@ -70,17 +79,8 @@ def play_level(board, player_row, player_col, health_points, experience_points, 
                 result = fight.fight_with_boss(health_points, experience_points)
 
         elif key == ' ':
-            display_inventory(inventory)
+            inv.display_inventory(inventory)
     return health_points, experience_points, inventory
-
-
-def initialise_player():
-    player_row = 1
-    player_col = 1
-    health_points = INITIAL_HEALTH_POINTS
-    experience_points = INITIAL_EXPERIENCE_POINTS
-    inventory = {}
-    return player_row, player_col, health_points, experience_points, inventory
 
 
 def main():
