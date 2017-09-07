@@ -11,12 +11,11 @@ def high_scores(name, time_spent, text_file):
         if time_spent < int(lines[i][1]):
             lines.insert(i, new_score)
             lines.pop()
-            print("It took you", time_spent, "to win the game.")
+            print("It took you", time_spent, "seconds to win the game.")
             print("Your score will be added to hall of fame.")
-            
             break
     else:
-        print("It took you", time_spent, "to win the game.")
+        print("It took you", time_spent, " seconds to win the game.")
         print("Your score will not be added to hall of fame.")
     input("Press enter to continue: ")
 
