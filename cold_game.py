@@ -18,6 +18,7 @@ def print_intro():
               \      ).,(      /
                \___/    \___/
     ''')
+    print("\nTo defeat the great Space Hippopotamus you have to win a cold hot warm game!\n")
 
 
 def choose_random_number():
