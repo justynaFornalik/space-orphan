@@ -29,7 +29,7 @@ SPACE_PIE = '*'
 URANIUM = 'U'
 
 # Dict of item symbol to three-element list which constist of
-# name of item, type of item and its weigth.
+# name of item, type of item and its weight.
 ITEMS = {SPACE_WATER: ['space water', 'food', 0.1],
          SPACE_BANANA: ['space banana', 'food', 0.2],
          SPACE_PIE: ['space pie', 'food', 0.5],
@@ -47,10 +47,10 @@ LEFT = -1
 RIGHT = +1
 NO_CHANGE = 0
 
-# Dict of key symbol to tuple of horizontal direction change and vertical diretion change
+# Dict of key symbol to tuple of horizontal direction change and vertical direction change
 MOVE_KEYS = {'w': (UP, NO_CHANGE), 's': (DOWN, NO_CHANGE), 'a': (NO_CHANGE, LEFT), 'd': (NO_CHANGE, RIGHT)}
 
 INITIAL_HEALTH_POINTS = 1
 INITIAL_EXPERIENCE_POINTS = 1
-EXPERIENCE_REQUIRED_TO_FIGHT_BOSS = 1  # change this to bigger number
-NUM_URANIUM_REQUIRED = 1  # change this to bigger number
+EXPERIENCE_REQUIRED_TO_FIGHT_BOSS = 15
+NUM_URANIUM_REQUIRED = 5
