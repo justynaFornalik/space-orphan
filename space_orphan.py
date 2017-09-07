@@ -1,12 +1,13 @@
 import os
 import sys
+import time
 
 import printing
 import boards
 import inv
 import move
 import fight
-import hot_game
+import cold_game
 
 from constants import *
 
@@ -20,13 +21,39 @@ def initialise_player():
     return player_row, player_col, health_points, experience_points, inventory
 
 
+def choose_player_character():
+    players = ['!', '@', '&', ')', '{', ']']
+    print('     '.join(players), '\n')
+    player = None
+    while player not in players:
+        player = input()
+    return player
+
+
+def ask_name():
+    name = None
+    while not name:
+        name = input("\nWhat is your name? \n")
+    return name
+
+
+def wait_for_enter():
+    input("Press enter to continue: ")
+
+
 def is_not_enough_uranium(inventory):
     return URANIUM not in inventory or inventory[URANIUM] < NUM_URANIUM_REQUIRED
 
 
 def say_not_enough_uranium():
     print("You do not have enough uranium to go to the next level!")
-    input("Press enter to continue: ")
+    wait_for_enter()
+
+
+def say_end_level_1():
+    print("Fantastic! You gathered enough Uranium for your suit!")
+    print("You are able to go to the your enemy's planet to avenge your parents!")
+    wait_for_enter()
 
 
 def is_enough_experience(experience_points):
@@ -36,20 +63,7 @@ def is_enough_experience(experience_points):
 def say_not_enough_experience():
     print("You do not have enough experience to fight The Great Space Hippopotamus!")
     print("Come back when you are worthy!")
-    input("Press enter to continue: ")
-
-
-def fight_with_boss():
-    if is_enough_experience(experience_points):
-        os.system('clear')
-        result = hot_game.game()
-        if result:
-            printing.print_screen(printing.win_screen)
-        else:
-            printing.print_screen(printing.lose_screen)
-        end_game()
-    else:
-        say_not_enough_experience()
+    wait_for_enter()
 
 
 def end_game():
@@ -58,28 +72,41 @@ def end_game():
     sys.exit()
 
 
-def play_level(board, player_row, player_col, health_points, experience_points, inventory):
+def fight_with_boss(experience_points, start_time):
+    if is_enough_experience(experience_points):
+        os.system('clear')
+        result = cold_game.game()
+        if result:
+            printing.print_win_screen()
+        else:
+            printing.print_lose_screen()
+        end_game()
+    else:
+        say_not_enough_experience()
+
+
+def play_level(board, player, player_row, player_col, health_points, experience_points, inventory, start_time):
     while True:
-        printing.print_board(board, player_row, player_col)
-        key = move.getch()
+        printing.print_board(board, player, player_row, player_col, health_points, experience_points)
+        key = move.getch().lower()
 
         if key == ' ':
             inv.display_inventory(inventory)
 
         elif key in MOVE_KEYS:
             player_row, player_col = move.move_player(board, player_row, player_col, key)
-            printing.print_board(board, player_row, player_col)
+            printing.print_board(board, player, player_row, player_col, health_points, experience_points)
             symbol = board[player_row][player_col]
 
             if symbol in ITEMS:
-                inv.add_to_inventory(inventory, symbol)
+                health_points = inv.add_to_inventory(inventory, symbol, health_points)
                 board[player_row][player_col] = EMPTY_SPACE
 
             elif symbol in MONSTERS:
                 health_points, experience_points = fight.fight_monster(symbol, health_points, experience_points)
                 board[player_row][player_col] = EMPTY_SPACE
                 if health_points <= 0:
-                    printing.print_screen(printing.lose_screen)
+                    printing.print_lose_screen()
                     end_game()
 
             elif symbol == WAY_TO_SECOND_LEVEL:
@@ -89,21 +116,26 @@ def play_level(board, player_row, player_col, health_points, experience_points, 
                     break
 
             elif symbol == BOSS:
-                fight_with_boss()
+                fight_with_boss(experience_points, start_time)
 
     return health_points, experience_points, inventory
 
 
 def main():
     printing.print_starting_screens()
+    printing.print_char_creation_screen()
+    player = choose_player_character()
+    name = ask_name()
     board = boards.initialise_board('board_level_1.txt')
     player_row, player_col, health_points, experience_points, inventory = initialise_player()
-    health_points, experience_points, inventory = play_level(board, player_row, player_col,
-                                                             health_points, experience_points, inventory)
-
+    start_time = time.time()
+    health_points, experience_points, inventory = play_level(board, player, player_row, player_col,
+                                                             health_points, experience_points, 
+                                                             inventory, start_time)
+    say_end_level_1()
     player_row, player_col = 1, 1
     board = boards.initialise_board('board_level_2.txt')
-    play_level(board, player_row, player_col, health_points, experience_points, inventory)
+    play_level(board, player, player_row, player_col, health_points, experience_points, inventory, start_time)
 
 
 if __name__ == '__main__':
