@@ -1,6 +1,25 @@
 import random
 
 
+def print_intro():
+    print('''
+             ,-.____,-.
+                  /   ..   \\
+                 /_        _\\
+                |'o'      'o'|
+               / ____________ \\
+             , ,'    `--'    '. .
+            _| |              | |_
+          /  ' '              ' '  \\
+         (    `,',__________.','    )
+          \_    ` ._______, '     _/
+             |                  |
+             |    ,-.    ,-.    |
+              \      ).,(      /
+               \___/    \___/
+    ''')
+
+
 def choose_random_number():
     first_numb = random.randint(1, 9)
 
@@ -47,8 +66,9 @@ def check_win(cold_warm_hot):
 
 
 def game():
-    guess_num = 1
 
+    print_intro()
+    guess_num = 1
     correct_answer = choose_random_number()
 
     while guess_num <= 10:
