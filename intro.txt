@@ -5,27 +5,21 @@
 .----)   |   |  |     /  _____  \ |  `----.|  |____ 
 |_______/    | _|    /__/     \__\ \______||_______|
                                                     
-  ______   .______      .______    __    __       ___      .__   __. 
- /  __  \  |   _  \     |   _  \  |  |  |  |     /   \     |  \ |  | 
-|  |  |  | |  |_)  |    |  |_)  | |  |__|  |    /  ^  \    |   \|  | 
-|  |  |  | |      /     |   ___/  |   __   |   /  /_\  \   |  . `  | 
-|  `--'  | |  |\  \----.|  |      |  |  |  |  /  _____  \  |  |\   | 
- \______/  | _| `._____|| _|      |__|  |__| /__/     \__\ |__| \__| 
-
-      .'     '.      _
-     /    .-""-\   _/ \
-   .-|   /:.   |  |   |
-   |  \  |:.   /.-'-./
-   | .-'-;:__.'    =/
-   .'=  *=|     _.='
-  /   _.  |    ;
- ;-.-'|    \   |
-/   | \    _\  _\
-\__/'._;.  ==' ==\
-         \    \   |
-         /    /   /
-         /-._/-._/
-         \   `\  \
-          `-._/._/
-
-
+  ______   .______      .______    __    __       ___      .__   __.              _____
+ /  __  \  |   _  \     |   _  \  |  |  |  |     /   \     |  \ |  |            .'     '.      _
+|  |  |  | |  |_)  |    |  |_)  | |  |__|  |    /  ^  \    |   \|  |           /    .-""-\   _/ \
+|  |  |  | |      /     |   ___/  |   __   |   /  /_\  \   |  . `  |         .-|   /:.   |  |   |
+|  `--'  | |  |\  \----.|  |      |  |  |  |  /  _____  \  |  |\   |         |  \  |:.   /.-'-./
+ \______/  | _| `._____|| _|      |__|  |__| /__/     \__\ |__| \__|         | .-'-;:__.'    =/
+                                                                             .'=  *=|     _.='
+ You are a little alien living on a far-away planet. One day an awful        /   _.  |    ;
+ Space Hippopotamus with his army of Space Hippopotamians blows up your     ;-.-'|    \   |
+ planet to obtain Uranium, which your planet is full of. Just before       /   | \    _\  _\
+ the explosion your parents manage to send you to another planet in a     \__/'._;.  ==' ==\
+ uranium-powered suit.                                                             \    \   |
+                                                                                  /    /   /
+ You’re in despair. You’re parents are dead and you want to avenge them.          /-._/-._/
+ You find yourself drifting in space and Uranium is running out.                  \   `\  \
+ You decide that you have to land on a nearby planet to get more Uranium           `-._/._/
+ to power your suit. There are many dangers and monsters awaiting you there.
+ 
