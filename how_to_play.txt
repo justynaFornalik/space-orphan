@@ -4,9 +4,9 @@
 
 CONTROLS:
 
-UP  ->  W
-DOWN ->  S
-LEFT  ->  A
+UP     ->  W
+DOWN   ->  S
+LEFT   ->  A
 RIGHT  ->  D
 
 TO INTERACT WITH MONSTERS AND PICK UP ITEMS MOVE 
