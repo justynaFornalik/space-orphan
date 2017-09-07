@@ -1,0 +1,5 @@
+Jessica,300
+Enrique,350
+Grażyna,400
+Brian,600
+Janusz,650
