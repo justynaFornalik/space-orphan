@@ -8,6 +8,7 @@ import inv
 import move
 import fight
 import cold_game
+import scores
 
 from constants import *
 
@@ -57,7 +58,7 @@ def say_end_level_1():
 
 
 def is_enough_experience(experience_points):
-    return experience_points > EXPERIENCE_REQUIRED_TO_FIGHT_BOSS
+    return experience_points >= EXPERIENCE_REQUIRED_TO_FIGHT_BOSS
 
 
 def say_not_enough_experience():
@@ -72,12 +73,14 @@ def end_game():
     sys.exit()
 
 
-def fight_with_boss(experience_points, start_time):
+def fight_with_boss(experience_points, name, start_time):
     if is_enough_experience(experience_points):
         os.system('clear')
         result = cold_game.game()
         if result:
             printing.print_win_screen()
+            time_spent = round(time.time() - start_time)
+            scores.high_scores(name, time_spent, 'highscores.txt')
         else:
             printing.print_lose_screen()
         end_game()
@@ -85,7 +88,7 @@ def fight_with_boss(experience_points, start_time):
         say_not_enough_experience()
 
 
-def play_level(board, player, player_row, player_col, health_points, experience_points, inventory, start_time):
+def play_level(board, player, player_row, player_col, health_points, experience_points, inventory, start_time, name):
     while True:
         printing.print_board(board, player, player_row, player_col, health_points, experience_points)
         key = move.getch().lower()
@@ -116,7 +119,7 @@ def play_level(board, player, player_row, player_col, health_points, experience_
                     break
 
             elif symbol == BOSS:
-                fight_with_boss(experience_points, start_time)
+                fight_with_boss(experience_points, name, start_time)
 
     return health_points, experience_points, inventory
 
@@ -131,11 +134,11 @@ def main():
     start_time = time.time()
     health_points, experience_points, inventory = play_level(board, player, player_row, player_col,
                                                              health_points, experience_points, 
-                                                             inventory, start_time)
+                                                             inventory, start_time, name)
     say_end_level_1()
     player_row, player_col = 1, 1
     board = boards.initialise_board('board_level_2.txt')
-    play_level(board, player, player_row, player_col, health_points, experience_points, inventory, start_time)
+    play_level(board, player, player_row, player_col, health_points, experience_points, inventory, start_time, name)
 
 
 if __name__ == '__main__':

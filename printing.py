@@ -58,7 +58,8 @@ def print_char_creation_screen():
 
 def print_win_screen():
     win_screen = read_screen('win.txt')
-    print_screen(win_screen)
+    os.system('clear')
+    print(win_screen)
 
 
 def print_lose_screen():
