@@ -75,11 +75,10 @@ def print_hall_of_fame_screen():
             contents.append(sublist)
     print('\n\n\n\n')
     print("HALL OF FAME\n\n")
-    print('Name'.rjust(15), 'Time spent'.rjust(15), 'Monsters killed'.rjust(15))
+    print('Name'.rjust(10), 'Time spent'.ljust(10))
     for sublist in contents:
-        for item in sublist:
-            print(item.rjust(15), end=' ')
-        print('')
+        print(sublist[0].rjust(10), end=' ')
+        print(sublist[1].ljust(10))
     print('\n')
     input('Press enter to continue: ')
 
