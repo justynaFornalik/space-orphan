@@ -3,7 +3,7 @@ import random
 
 def print_intro():
     print('''
-             ,-.____,-.
+                  ,-.____,-.
                   /   ..   \\
                  /_        _\\
                 |'o'      'o'|
@@ -18,7 +18,7 @@ def print_intro():
               \      ).,(      /
                \___/    \___/
     ''')
-    print("\nTo defeat the great Space Hippopotamus you have to win a cold hot warm game!\n")
+    print("\nTo defeat the great Space Hippopotamus you have to win a cold warm hot game!\n")
 
 
 def choose_random_number():
